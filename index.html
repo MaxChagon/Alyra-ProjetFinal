@@ -11,7 +11,7 @@
         <h2>Contrat <samp>VoteAssemblee</samp></h2>
           <div>
               <button onclick="createMetaMaskDapp()">Connect to MetaMask</button>
-              <label><button onclick="instantiateAssembleeNationale()">Charger le contrat</button><input id="contractAddress" type="text" value="0xc2c597159b1ec7debb633e34c5283f145a8841ea"></label>
+              <label><button onclick="instantiateAssembleeNationale()">Charger le contrat</button><input id="contractAddress" type="text" value="0xac42bdeef39728da1836480cee709bf44931546a"></label>
               
           </div>
         <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
@@ -38,6 +38,8 @@
   <p><label><button onclick="createProposition()">Créer une proposition</button></label>
     <input id="createPropositionName" type="text" value="">
     <input id="createPropositionType" type="int" value="">
+
+    <label><button onclick="allPropositions()">Toutes les propositions</button><output id="allPropositions" type="text" value=""></label>
 
   <label><button onclick="activerProp()">Activer une proposition de vote</button><input id="activateProp" type="text" value=""></label>
   <label><button onclick="desactiverProp()">Désactiver une proposition de vote</button><input id="desactivateProp" type="text" value=""></label></p>
