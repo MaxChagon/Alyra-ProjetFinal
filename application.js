@@ -158,7 +158,7 @@ const abi = [
     "outputs": [
       {
         "internalType": "uint256[3]",
-        "name": "retour",
+        "name": "",
         "type": "uint256[3]"
       }
     ],
@@ -251,7 +251,7 @@ const abi = [
     "outputs": [
       {
         "internalType": "bool",
-        "name": "adoptee",
+        "name": "",
         "type": "bool"
       }
     ],
@@ -347,6 +347,36 @@ const abi = [
         "internalType": "address[]",
         "name": "",
         "type": "address[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getDecompte",
+    "outputs": [
+      {
+        "internalType": "uint256[3]",
+        "name": "",
+        "type": "uint256[3]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getVerdict",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
     "payable": false,
@@ -537,14 +567,16 @@ async function deleteAVote() {
 
 async function decompte() {
   let decompteId = document.getElementById("decompte").value;
-  let resultats = await contratAssembleeNationale.decompte(decompteId);
+  await contratAssembleeNationale.decompte(decompteId);
+  let resultats = await contratAssembleeNationale.getDecompte();
   console.log("Décompte des votes [pour, contre, abstention] pour la proposition " + decompteId + " " + resultats);
 }
 
 async function verdict() {
   let verdictId = document.getElementById("verdict").value;
-  let resultat = await contratAssembleeNationale.verdict(verdictId);
-  console.log("Verdict pour la proposition " + verdictId + "" + resultat +" (true = adoptée, false = rejetée)");
+  await contratAssembleeNationale.verdict(verdictId);
+  let resultat = await contratAssembleeNationale.getVerdict();
+  console.log("Verdict pour la proposition " + verdictId + " " + resultat +" (true = adoptée, false = rejetée)");
 }
 
 async function saveInfoDep() {
