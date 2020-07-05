@@ -20,4 +20,4 @@ Installation :
 - Lancer le serveur : npx live-server
 - index.html est alors accessible depuis http://127.0.0.1:8080
 
-Le contrat AssembleeNationale a été déployé à l'adresse 0xc2c597159b1ec7debb633e34c5283f145a8841ea sur Kovan.
+Le contrat AssembleeNationale a été déployé à l'adresse 0xac42bdeef39728da1836480cee709bf44931546a sur Kovan.
