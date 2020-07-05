@@ -18,6 +18,8 @@ contract AssembleeNationale{
     PropositionDeVote[] propositions;
     uint idAssemblee;
     address[][] sauvegardeDep;
+    uint[3] resultatEnCours;
+    bool resultatVerdict;
     
     struct Votes{
         mapping (address=>uint8) voteParDepute;
@@ -156,36 +158,36 @@ contract AssembleeNationale{
    /**
    * @dev Pour faire le décompte des voix
    */
-   function decompte(uint id) public onlyOwner returns(uint[3] memory retour){
+   function decompte(uint id) public onlyOwner returns(uint[3] memory){
        propositions[id].resultat = 0;
-       retour = [propositions[id].nombrePour, propositions[id].nombreContre, propositions[id].abstentions];
+       resultatEnCours = [propositions[id].nombrePour, propositions[id].nombreContre, propositions[id].abstentions];
        desactiverProp(id);
        deleteAVote();
-       return(retour);
+       return(resultatEnCours);
    }
    
    /**
    * @dev Pour statuer en fonction du type de vote
    */
-   function verdict(uint id) public returns(bool adoptee){
-       adoptee = false;
+   function verdict(uint id) public returns(bool){
+       resultatVerdict = false;
        if(propositions[id].typeVote == 1){
            if(propositions[id].nombrePour > propositions[id].nombreContre+propositions[id].abstentions){
-               adoptee = true;
+               resultatVerdict = true;
            }
        }
        else if(propositions[id].typeVote == 2){
            if(propositions[id].nombrePour >= 3*(propositions[id].nombreContre+propositions[id].abstentions)/2){
-               adoptee = true;
+               resultatVerdict = true;
            }
        }
        else if(propositions[id].typeVote == 3){
            if(propositions[id].nombrePour > propositions[id].nombreContre){
-               adoptee = true;
+               resultatVerdict = true;
            }
        }
        
-       if(adoptee){
+       if(resultatVerdict){
            propositions[id].resultat = 1;
        }
        else{
@@ -193,7 +195,7 @@ contract AssembleeNationale{
        }
        
        propositions[id].idActualAssemblee = idAssemblee;
-       return(adoptee);
+       return(resultatVerdict);
    }
    
    /**
@@ -245,5 +247,16 @@ contract AssembleeNationale{
    function propDump() public view returns(PropositionDeVote[] memory){
         return(propositions);
     }
+    
+    
+    function getDecompte() public view onlyOwner returns(uint[3] memory){
+        return(resultatEnCours);
+    }
+    
+    
+    function getVerdict() public view onlyOwner returns(bool){
+        return(resultatVerdict);
+    }
+    
    
 }
