@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Première DApp</title>
+</head>
+<body>
+        <h1>Assemblée nationale</h1>
+        <h2>Contrat <samp>VoteAssemblee</samp></h2>
+          <div>
+              <button onclick="createMetaMaskDapp()">Connect to MetaMask</button>
+              <label><button onclick="instantiateAssembleeNationale()">Charger le contrat</button><input id="contractAddress" type="text" value="0xcdf000844040298f3b9df91ce3b554e23e37a42a"></label>
+              
+          </div>
+        <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js"
+
+        charset="utf-8"
+
+        type="text/javascript">
+        </script>
+        <script src="application.js"
+
+        charset="utf-8"
+ 
+        type="text/javascript">
+
+  </script>
+  <h3>Députés</h3>
+  <p><label><button onclick="addDepute()">Ajouter un député</button><input id="addDepute" type="text" value=""></label>
+  <label><button onclick="setNombreDeputes()">Nombre de députés</button><input id="setNombreDeputes" type="int" value=""></label>
+  <label><button onclick="totalDeputes()">Tous les députés</button><output id="totalDeputes" type="text" value=""></label>
+  <label><button onclick="removeDepute()">Député à enlever</button><input id="removeDepute" type="text" value=""></label>
+  <button onclick="removeAllDeputes()">Effacer tous les députés</button></p>
+  
+  <h3>Propositions de vote</h3>
+  <p><label><button onclick="createProposition()">Créer une proposition</button></label>
+    <input id="createPropositionName" type="text" value="">
+    <input id="createPropositionType" type="int" value="">
+
+  <label><button onclick="activerProp()">Activer une proposition de vote</button><input id="activateProp" type="text" value=""></label>
+  <label><button onclick="desactiverProp()">Désactiver une proposition de vote</button><input id="desactivateProp" type="text" value=""></label></p>
+
+  <h3>Votes</h3>
+  <p><label><button onclick="voter()">Voter pour une proposition de vote activée</button>
+    <input id="idProp" type="text" value="">
+    <input id="vote" type="text" value=""></label>
+
+  <button onclick="deleteAVote()">Réinitialiser la possibilité de voter</button>  
+  
+  <label><button onclick="decompte()">Décompte des votes d'une proposition</button><input id="decompte" type="text" value=""></label>
+  
+  <label><button onclick="verdict()">Verdict pour une proposition</button><input id="verdict" type="text" value=""></label></ p>
+
+  <h3>Sauvegardes</h3>
+  <p><button onclick="saveInfoDep()">Sauvegarder les députés</button>
+
+  <label><button onclick="afficherVote()">Afficher le votes d'un députés</button>
+    <input id="idPropDep" type="text" value="">
+    <input id="dpId" type="text" value=""></label>
+
+  <label><button onclick="allVotes()">Afficher les votes pour une proposition</button>
+    <input id="dpIdAll" type="text" value=""></label>  
+
+  <label><button onclick="deputesByIdAss()">Afficher les députés d'une Assemblée</button>
+    <input id="assId" type="text" value=""></label>    
+
+  <label><button onclick="votesAndDeputes()">Afficher les députés et les votes</button>
+    <input id="IdpropVotes" type="text" value=""></label></p> 
+
+  <h3>Infos Ethereum</h3> 
+  <p> <button onclick="balance()">Balance</button>
+
+  <button id="numeroBloc" onclick="numeroBloc()">Numéro du bloc</button>
+  <span type="text" id="numBloc"></span><br>
+
+  <button id="prixGaz" onclick="gazPrice()">Prix du gaz</button>
+  <span type="text" id="prix"></span><br></p>
+</body>
+</html>
