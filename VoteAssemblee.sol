@@ -239,4 +239,11 @@ contract AssembleeNationale{
        return(retour1,retour2);
    }
    
+   /**
+   * @dev Pour connaître toutes les propositions de vote
+   */
+   function propDump() public view returns(PropositionDeVote[] memory){
+        return(propositions);
+    }
+   
 }
