@@ -356,6 +356,68 @@ const abi = [
   {
     "constant": true,
     "inputs": [],
+    "name": "propDump",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "nom",
+            "type": "string"
+          },
+          {
+            "internalType": "uint8",
+            "name": "typeVote",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nombrePour",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nombreContre",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "abstentions",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint8",
+            "name": "statut",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "resultat",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "idActualAssemblee",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct AssembleeNationale.PropositionDeVote[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "totalDeputes",
     "outputs": [
       {
@@ -441,6 +503,12 @@ async function createProposition() {
   let proptype = document.getElementById("createPropositionType").value;
   await contratAssembleeNationale.createProposition(propName, proptype);
   console.log("Proposition : " + propName + " créée");
+}
+
+async function allPropositions() {
+  let propositions = await contratAssembleeNationale.propDump();
+  document.getElementById("allPropositions").value = propositions;
+  console.log("Propositions : " + propositions);
 }
 
 async function activerProp() {
